@@ -1,0 +1,298 @@
+<div>
+  <div class="cabecera">
+    <h3 class="titleTable">LISTA DE AUTOS</h3>
+    <div class="input-group">
+      <div class="input-group-prepend">
+        <div class="input-group-text">
+          <img
+            src="https://www.pinclipart.com/picdir/big/370-3705571_dibujo-lupa-png-como-dibujar-una-lupa-clipart.png"
+            width="20"
+          />
+        </div>
+      </div>
+      <input
+        class="form-control si"
+        type="text"
+        name="searchTerm"
+        placeholder="Nombre ...."
+        [(ngModel)]="searchTerm"
+      />
+    </div>
+  </div>
+  <div class="tableFull scroll">
+    <table class="table table-striped">
+      <thead>
+        <th class="titles_table">name</th>
+        <th class="titles_table">miles_per_Gallon</th>
+        <th class="titles_table">cylinders</th>
+        <th class="titles_table">displacement</th>
+        <th class="titles_table">horsepower</th>
+        <th class="titles_table">weight_in_lbs</th>
+        <th class="titles_table">acceleration</th>
+        <th class="titles_table">year</th>
+        <th class="titles_table">origin</th>
+        <th class="titles_table">Accion</th>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of autoSet | listFilter: searchTerm">
+          <td>{{ item.name }}</td>
+          <td>{{ item.miles_per_Gallon }}</td>
+          <td>{{ item.cylinders }}</td>
+          <td>{{ item.displacement }}</td>
+          <td>{{ item.horsepower }}</td>
+          <td>{{ item.weight_in_lbs }}</td>
+          <td>{{ item.acceleration }}</td>
+          <td>{{ item.year }}</td>
+          <td>{{ item.origin }}</td>
+          <td>
+            <button class="btn btn-sm" (click)="triggerModal(modalData, item)">
+              <img
+                src="https://cdn.icon-icons.com/icons2/2098/PNG/128/edit_icon_128873.png"
+                alt=""
+                width="25"
+              />
+            </button>
+
+            <button class="btn btn-sm" (click)="deleteAuto(item.id)">
+              <img
+                src="https://cdn-icons-png.flaticon.com/512/1017/1017530.png"
+                width="25"
+              />
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<ng-template #modalData let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title titleTable" id="modal-basic-title">EDITAR AUTO</h4>
+    <button
+      type="button"
+      class="close"
+      aria-label="Close"
+      (click)="modal.dismiss('Cross click')"
+    >
+      <span aria-hidden="true">×</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div style="width: 400px; margin: auto">
+      <div class="submit-form">
+        <div class="form-group">
+          <label for="name">name</label>
+          <input
+            type="text"
+            class="form-control"
+            id="marca"
+            required
+            [(ngModel)]="currentCarro.name"
+            name="marca"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="author">miles_per_Gallon</label>
+          <input
+            type="text"
+            class="form-control"
+            id="modelo"
+            required
+            [(ngModel)]="currentCarro.miles_per_Gallon"
+            name="modelo"
+          />
+        </div>
+        <div class="form-group">
+          <label for="author">cylinders</label>
+          <input
+            type="text"
+            class="form-control"
+            id="modelo"
+            required
+            [(ngModel)]="currentCarro.cylinders"
+            name="modelo"
+          />
+        </div>
+        <div class="form-group">
+          <label for="author">displacement</label>
+          <input
+            type="text"
+            class="form-control"
+            id="modelo"
+            required
+            [(ngModel)]="currentCarro.displacement"
+            name="modelo"
+          />
+        </div>
+        <div class="form-group">
+          <label for="author">horsepower</label>
+          <input
+            type="text"
+            class="form-control"
+            id="modelo"
+            required
+            [(ngModel)]="currentCarro.horsepower"
+            name="modelo"
+          />
+        </div>
+        <div class="form-group">
+          <label for="author">weight_in_lbs</label>
+          <input
+            type="text"
+            class="form-control"
+            id="modelo"
+            required
+            [(ngModel)]="currentCarro.weight_in_lbs"
+            name="modelo"
+          />
+        </div>
+        <div class="form-group">
+          <label for="author">acceleration</label>
+          <input
+            type="text"
+            class="form-control"
+            id="modelo"
+            required
+            [(ngModel)]="currentCarro.acceleration"
+            name="modelo"
+          />
+        </div>
+        <div class="form-group">
+          <label for="author">year</label>
+          <input
+            type="date"
+            class="form-control"
+            id="modelo"
+            required
+            [(ngModel)]="currentCarro.year"
+            name="modelo"
+          />
+        </div>
+        <div class="form-group">
+          <label for="author">origin</label>
+          <input
+            type="text"
+            class="form-control"
+            id="modelo"
+            required
+            [(ngModel)]="currentCarro.origin"
+            name="modelo"
+          />
+        </div>
+        <div class="modal-footer">
+          <button
+            type="button"
+            class="btn btn-info"
+            (click)="updateBook()"
+            (click)="modal.close('Save click')"
+          >
+            ACTUALIZAR
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>
+<hr />
+
+<div class="cabecera">
+  <h3 class="titleTable">BUSCAR AUTO</h3>
+  <form #f="ngForm" class="form-inline input-group">
+    <div class="input-group-prepend">
+      <button
+        (click)="retrieveauto(idCarro)"
+        [disabled]="!f?.valid"
+        class="input-group-text"
+      >
+        <img
+          src="https://www.pinclipart.com/picdir/big/370-3705571_dibujo-lupa-png-como-dibujar-una-lupa-clipart.png"
+          width="20"
+        />
+      </button>
+    </div>
+    <input
+      type="text"
+      placeholder="ID ...."
+      [(ngModel)]="idCarro"
+      id="name"
+      name="name"
+      class="form-control si"
+    />
+  </form>
+</div>
+
+<div class="buscarAutos">
+  <div class="r">
+    <label *ngIf="!currentCarro"
+      ><span class="tituloDeAutos">{{ msgError }}</span></label
+    >
+    <div class="card" *ngIf="currentCarro">
+      <div class="card-body">
+        <h5 class="card-title titleTable">Detallado Auto</h5>
+        <div>
+          <label
+            ><span class="tituloDeAutos">Name:</span>
+            {{ currentCarro.name }}</label
+          >
+
+          <label
+            ><span class="tituloDeAutos">miles_per_Gallon:</span>
+            {{ currentCarro.miles_per_Gallon }}</label
+          >
+
+          <label
+            ><span class="tituloDeAutos">cylinders:</span>
+            {{ currentCarro.cylinders }}</label
+          >
+        </div>
+        <div>
+          <label
+            ><span class="tituloDeAutos">displacement:</span>
+            {{ currentCarro.displacement }}</label
+          >
+
+          <label
+            ><span class="tituloDeAutos">horsepower:</span>
+            {{ currentCarro.horsepower }}</label
+          >
+
+          <label
+            ><span class="tituloDeAutos">weight_in_lbs:</span>
+            {{ currentCarro.weight_in_lbs }}</label
+          >
+        </div>
+        <div>
+          <label
+            ><span class="tituloDeAutos">acceleration:</span
+            >{{ currentCarro.acceleration }}</label
+          >
+
+          <label
+            ><span class="tituloDeAutos">year:</span
+            >{{ currentCarro.year }}</label
+          >
+
+          <label
+            ><span class="tituloDeAutos">origin:</span
+            >{{ currentCarro.origin }}</label
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="listContainer scroll">
+    <ul class="list-group">
+      <li
+        class="list-group-item"
+        *ngFor="let id of autoSet; let i = index"
+        [class.active]="i == currentIndex"
+        (click)="setActiveBook(id, i)"
+      >
+        <div>{{ id.name }}</div>
+      </li>
+    </ul>
+  </div>
+</div>

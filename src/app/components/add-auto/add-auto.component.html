@@ -1,0 +1,137 @@
+<form #myForm="ngForm">
+  <h3 class="titleAgregar">AGREGAR AUTO</h3>
+  <div class="submit-form">
+    <div *ngIf="!submitted">
+      <div class="form-row">
+        <div class="col">
+          <label class="titleForm" for="name">Name</label>
+          <input
+            type="text"
+            class="form-control"
+            id="marca"
+            placeholder="buick skylark 320"
+            required
+            [(ngModel)]="auto.name"
+            name="marca"
+          />
+        </div>
+        <div class="col">
+          <label class="titleForm" for="author">miles_per_Gallon</label>
+          <input
+            type="text"
+            class="form-control"
+            placeholder="15"
+            id="modelo"
+            required
+            [(ngModel)]="auto.miles_per_Gallon"
+            name="modelo"
+          />
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="col">
+          <label class="titleForm" for="author">cylinders</label>
+          <input
+            type="text"
+            class="form-control"
+            id="modelo"
+            placeholder="8"
+            required
+            [(ngModel)]="auto.cylinders"
+            name="modelo"
+          />
+        </div>
+        <div class="col">
+          <label class="titleForm" for="author">displacement</label>
+          <input
+            type="text"
+            placeholder="350"
+            class="form-control"
+            id="modelo"
+            required
+            [(ngModel)]="auto.displacement"
+            name="modelo"
+          />
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="col">
+          <label class="titleForm" for="author">horsepower</label>
+          <input
+            type="text"
+            class="form-control"
+            id="modelo"
+            placeholder="165"
+            required
+            [(ngModel)]="auto.horsepower"
+            name="modelo"
+          />
+        </div>
+        <div class="col">
+          <label class="titleForm" for="author">weight_in_lbs</label>
+          <input
+            type="text"
+            placeholder="3693"
+            class="form-control"
+            id="modelo"
+            required
+            [(ngModel)]="auto.weight_in_lbs"
+            name="modelo"
+          />
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="col">
+          <label class="titleForm" for="author">acceleration</label>
+          <input
+            type="text"
+            placeholder="12"
+            class="form-control"
+            id="modelo"
+            required
+            [(ngModel)]="auto.acceleration"
+            name="modelo"
+          />
+        </div>
+        <div class="col">
+          <label class="titleForm" for="author">year</label>
+          <input
+            type="date"
+            class="form-control"
+            id="modelo"
+            required
+            [(ngModel)]="auto.year"
+            name="modelo"
+          />
+        </div>
+        <div class="col">
+          <label class="titleForm" for="author">origin</label>
+          <input
+            type="text"
+            class="form-control"
+            id="modelo"
+            placeholder="USA"
+            required
+            [(ngModel)]="auto.origin"
+            name="modelo"
+          />
+        </div>
+      </div>
+
+      <hr />
+
+      <button
+        (click)="suaveAuto()"
+        [disabled]="!myForm.form.valid"
+        class="btn btn_add"
+      >
+        Guardar
+      </button>
+    </div>
+    <div *ngIf="submitted">
+      <h4 class="title-dos">Dueño guadado!</h4>
+      <button class="btn btn_add-s" (click)="newAuto()">Agregar</button>
+    </div>
+  </div>
+  {{ msgError }}
+</form>

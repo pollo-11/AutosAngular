@@ -1,0 +1,43 @@
+.img {
+  margin-right: 80px;
+  height: 80px;
+  cursor: pointer;
+}
+.nav_containers {
+  width: 100%;
+  height: 100px;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 30px;
+}
+.lista {
+  display: flex;
+  width: 400px;
+  margin: 0px !important;
+  align-items: center;
+  justify-content: space-between;
+}
+.lista li {
+  list-style: none;
+}
+.lista li > a {
+  font-weight: 800 !important;
+  color: white !important;
+}
+.lista li > a:hover {
+  font-weight: 800 !important;
+  color: #310a90 !important;
+}
+.nav_containers {
+  position: sticky;
+  top: 0;
+  backdrop-filter: blur(40px);
+  z-index: 100;
+}
+
+
+.container-app{
+  max-width: 1200px;
+  margin: 0 auto;
+}
